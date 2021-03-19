@@ -14,8 +14,7 @@ const landlordSchema = new mongoose.Schema({
       ref: "House",
     },
   ],
-  gender: { type: String, enum: ["MALE", "FEMALE"] },
-  photo: { type: String },
+  photo: { type: String, default: "" },
 });
 
 const landlordModel = new mongoose.model("landlord", landlordSchema);

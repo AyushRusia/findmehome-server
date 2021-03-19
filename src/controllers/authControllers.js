@@ -12,7 +12,7 @@ export const landlordRegister = async (req, res) => {
     if (tuser) return res.status(400).json({ error: "email is taken" });
 
     //hashing password
-    const hashPassword = await bcrypt.hash(password, process.env.SALT_ROUND);
+    const hashPassword = await bcrypt.hash(password, 4);
 
     const user = await new landlordModel({
       name: name,
@@ -42,7 +42,7 @@ export const tenantRegister = async (req, res) => {
     if (tuser) return res.status(400).json({ error: "email is taken" });
 
     //hashing password
-    const hashPassword = await bcrypt.hash(password, process.env.SALT_ROUND);
+    const hashPassword = await bcrypt.hash(password, 4);
 
     const user = await new tenantModel({
       name: name,

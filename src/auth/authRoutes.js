@@ -4,14 +4,14 @@ import {
   landlordRegister,
   tenantRegister,
   login,
-} from "../controllers/authControllers";
+} from "../controllers/authControllers.js";
 
 const router = express.Router();
 
-router.post("/lregister", landlordRegister());
+router.post("/lregister", landlordRegister);
 
-router.post("/tregister", tenantRegister());
+router.post("/tregister", tenantRegister);
 
-router.post("/login", login());
+router.post("/login", login);
 
 export default router;

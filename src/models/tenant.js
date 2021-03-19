@@ -1,5 +1,5 @@
-import mongoose, { Schema } from "mongoose";
-
+import mongoose from "mongoose";
+const { Schema } = mongoose;
 const tenantSchema = new mongoose.Schema({
   name: { type: String, default: "" },
   email: { type: String, default: "" },

@@ -1,6 +1,6 @@
 import express from "express";
-import landlordModel from "../models/landlord";
-import tenantModel from "../models/tenant";
+import landlordModel from "../models/landlord.js";
+import tenantModel from "../models/tenant.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 

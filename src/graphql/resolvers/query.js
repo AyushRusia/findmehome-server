@@ -15,6 +15,13 @@ const queries = {
       };
     });
   },
+  getMyHouses: async (Args, req) => {
+    const userId = req.userId;
+    const landlord = await landlordModel.findById(userId);
+    const houseIds = landlord.house;
+    const houses = await houseModel.find({ _id: { $in: houseIds } });
+    return houses;
+  },
 };
 
 export default queries;

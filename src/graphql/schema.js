@@ -53,6 +53,7 @@ type RootQuery{
     getAllTenants:[Tenant!]
     getAllHouses:[House!]
     getMyHouses:[House!]
+    getMyTenants(HouseId:ID):[Tenant!]
 }
 
 input HouseInput{

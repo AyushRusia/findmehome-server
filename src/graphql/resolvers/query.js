@@ -22,6 +22,20 @@ const queries = {
     const houses = await houseModel.find({ _id: { $in: houseIds } });
     return houses;
   },
+  getMyTenants: async (Args, req) => {
+    try {
+      const userId = req.userId;
+      //const landlord = await landlordModel.findById(userId);
+      const house = await houseModel.findById(Args.HouseId);
+      console.log(house);
+      const tenantsIds = house.tenant;
+      const tenants = await tenantModel.find({ _id: { $in: tenantsIds } });
+      console.log(tenants);
+      return tenants;
+    } catch (e) {
+      console.log(e);
+    }
+  },
 };
 
 export default queries;

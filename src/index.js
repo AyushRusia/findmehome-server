@@ -39,9 +39,10 @@ app.listen(PORT, () => console.log(`Listining to ${PORT}`));
 
 app.use("/graphql", async (req, res) => {
   const token = req.cookies.token;
+
   if (token) {
     const user = await jwt.verify(token, process.env.JWT_SECRET);
-    req.userId = user.id;
+    req.userId = user.user;
   }
 
   return graphqlHTTP({

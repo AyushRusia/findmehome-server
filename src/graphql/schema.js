@@ -49,9 +49,9 @@ type Tenant{
 }
 
 type RootQuery{
-    getAllLandlord:[Landlord!]
-    getAllTenant:[Tenant!]
-    getAllHouse:[House!]
+    getAllLandlords:[Landlord!]
+    getAllTenants:[Tenant!]
+    getAllHouses:[House!]
 }
 
 input HouseInput{

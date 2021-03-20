@@ -17,10 +17,10 @@ router.post("/login", login);
 router.get("/logout", async (req, res) => {
   res
     .cookie("token", "", {
-      httpOnly: true,
+      //httpOnly: true,
       expires: new Date(0),
-      sameSite: "None",
-      secure: true,
+      // sameSite: "None",
+      // secure: true,
     })
     .send("Logged Out");
 });

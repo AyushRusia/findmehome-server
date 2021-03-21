@@ -8,7 +8,7 @@ const queries = {
 
   getAllHouses: async (Args, req) => {
     const houses = await houseModel.find();
-    console.log(houses);
+
     return houses.map((house) => {
       return {
         ...house._doc,
@@ -27,11 +27,23 @@ const queries = {
       const userId = req.userId;
       //const landlord = await landlordModel.findById(userId);
       const house = await houseModel.findById(Args.HouseId);
-      console.log(house);
+
       const tenantsIds = house.tenant;
       const tenants = await tenantModel.find({ _id: { $in: tenantsIds } });
-      console.log(tenants);
+
       return tenants;
+    } catch (e) {
+      console.log(e);
+    }
+  },
+  getBookedHouse: async (Args, req) => {
+    try {
+      const userId = req.userId;
+      const tenant = await tenantModel.findById(userId);
+      if (!tenant.bookedHouse) return new Error("No House Found");
+      const houseId = tenant.bookedHouse;
+      const house = await houseModel.findById(houseId);
+      return house;
     } catch (e) {
       console.log(e);
     }

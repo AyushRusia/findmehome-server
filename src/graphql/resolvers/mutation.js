@@ -32,7 +32,7 @@ const mutations = {
     }
   },
 
-  createBooking: async (Args, req) => {
+  createBooking: async (Args, req, res) => {
     try {
       const { HouseId } = Args;
       const userId = req.userId;
@@ -61,6 +61,7 @@ const mutations = {
       return savedData;
     } catch (e) {
       console.log(e);
+      return Error(e.data);
     }
   },
 };

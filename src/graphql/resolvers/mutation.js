@@ -31,6 +31,38 @@ const mutations = {
       console.log(e);
     }
   },
+
+  createBooking: async (Args, req) => {
+    try {
+      const { HouseId } = Args;
+      const userId = req.userId;
+      const tenant = await tenantModel.findById(userId);
+
+      if (tenant.bookedHouse) return new Error("House Already Booked");
+      const house = await houseModel.findById(HouseId);
+
+      if (house.status == "FULL") return new Error("House is Full");
+      await house.tenant.push(tenant);
+      await house.updateOne({
+        currentSharing: house.currentSharing++,
+      });
+      if (house.currentSharing == house.totalSharing) {
+        await house.updateOne({
+          status: "FULL",
+        });
+      }
+
+      await tenant.updateOne({
+        bookedHouse: house,
+      });
+
+      await tenant.save();
+      const savedData = await house.save();
+      return savedData;
+    } catch (e) {
+      console.log(e);
+    }
+  },
 };
 
 export default mutations;

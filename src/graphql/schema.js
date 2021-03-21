@@ -68,6 +68,7 @@ input HouseInput{
 }
 type RootMutation{
     createHouse(HouseInput:HouseInput):House
+    createBooking(HouseId:ID):House
 }
 schema{
     query:RootQuery
